@@ -26,6 +26,7 @@ public class Result<T> {
         return result;
     }
 
+
     /**
      * 成功，有返回数据
      */

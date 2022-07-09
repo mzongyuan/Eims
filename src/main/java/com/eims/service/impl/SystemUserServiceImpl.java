@@ -71,4 +71,30 @@ public class SystemUserServiceImpl implements SystemUserService {
     public SystemUser addSystemUser(SystemUser user) {
         return systemUserRepository.save(user);
     }
+
+    /**
+     * @Description 删除用户
+     * @Auth zongyuan.ma
+     * @Parameter
+     * @Return
+     * @Date 2022/7/9 20:09
+     * @Version V 1.0.0
+     */
+    @Override
+    public void deleteUser(SystemUser user) {
+        systemUserRepository.saveAndFlush(user);
+    }
+
+    /**
+     * @Description 更新用户
+     * @Auth zongyuan.ma
+     * @Parameter
+     * @Return
+     * @Date 2022/7/9 20:19
+     * @Version V 1.0.0
+     */
+    @Override
+    public void updateUser(SystemUser user) {
+        systemUserRepository.saveAndFlush(user);
+    }
 }

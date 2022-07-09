@@ -18,4 +18,8 @@ public interface SystemUserService {
     List<SystemUser> getUserByUserCode(String userCode);
 
     SystemUser addSystemUser(SystemUser user);
+
+    void deleteUser(SystemUser user);
+
+    void updateUser(SystemUser user);
 }

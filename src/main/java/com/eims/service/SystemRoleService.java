@@ -1,6 +1,9 @@
 package com.eims.service;
 
+import com.eims.entity.system.SystemRole;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Description 角色接口
@@ -10,4 +13,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface SystemRoleService {
+    List<SystemRole> getRoleByRoleCode(String roleCode);
 }

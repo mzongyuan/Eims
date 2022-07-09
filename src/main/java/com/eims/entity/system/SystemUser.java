@@ -47,4 +47,12 @@ public class SystemUser {
     // 创建时间
     @Column(name = "create_date")
     private Date createDate;
+
+    // 角色编码
+    @Column(name = "role_code")
+    private String roleCode;
+
+    // 组织编码
+    @Column(name = "org_code")
+    private String orgCode;
 }

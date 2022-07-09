@@ -38,7 +38,10 @@ public enum ResultCode {
     USERUSER_INFO_DEFECT(5006, "用户提交信息不完整，请检查！"),
 
     // 密码复杂度不满足密码策略
-    PASSRORD_DISCONTENT_COMPLEXITY(5007, "密码复杂度不满足密码策略！");
+    PASSRORD_DISCONTENT_COMPLEXITY(5007, "密码复杂度不满足密码策略！"),
+
+    // 用户不存在
+    USER_NOT_EXIST(5008, "用户信息不存在！");
 
     private final Integer code;
 
