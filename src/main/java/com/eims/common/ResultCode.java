@@ -41,7 +41,19 @@ public enum ResultCode {
     PASSRORD_DISCONTENT_COMPLEXITY(5007, "密码复杂度不满足密码策略！"),
 
     // 用户不存在
-    USER_NOT_EXIST(5008, "用户信息不存在！");
+    USER_NOT_EXIST(5008, "用户信息不存在！"),
+
+    // 角色信息提交不完整
+    ROLE_INFO_DEFECT(5009, "角色信息提交不完整，请检查！"),
+
+    // 角色编码信息已存在
+    ROLE_CODE_EXIST(5010, "角色编码信息已存在！"),
+
+    // 用户不存在
+    ROLE_NOT_EXIST(5011, "角色信息不存在！"),
+
+    // 参数错误
+    PARAMETER_ERROR(5012, "参数错误！");
 
     private final Integer code;
 

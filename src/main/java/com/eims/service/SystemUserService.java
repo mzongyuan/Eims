@@ -1,9 +1,11 @@
 package com.eims.service;
 
 import com.eims.entity.system.SystemUser;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description 用户接口
@@ -22,4 +24,6 @@ public interface SystemUserService {
     void deleteUser(SystemUser user);
 
     void updateUser(SystemUser user);
+
+    Page<SystemUser> getPageUser(Map<String, Object> params, Integer pageSize, Integer currentPage);
 }

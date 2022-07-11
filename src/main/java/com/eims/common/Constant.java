@@ -8,7 +8,7 @@ package com.eims.common;
  */
 public class Constant {
 
-    public static final Long REDIS_TIMEOUT = 600L;
+    public static final Long REDIS_TIMEOUT = 6000L;
 
     public static final Integer UNAUTHORIZED = 401;
 }

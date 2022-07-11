@@ -1,5 +1,7 @@
 package com.eims.entity.system;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "system_role")
+@Data
 public class SystemRole {
 
     // 主键ID

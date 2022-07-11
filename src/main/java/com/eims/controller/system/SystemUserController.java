@@ -3,10 +3,13 @@ package com.eims.controller.system;
 import com.eims.common.*;
 import com.eims.entity.system.SystemRole;
 import com.eims.entity.system.SystemUser;
+import com.eims.pagination.PageObjectList;
+import com.eims.pagination.Pagination;
 import com.eims.service.SystemRoleService;
 import com.eims.service.SystemUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,9 +43,24 @@ public class SystemUserController {
      * @Version V 1.0.0
      */
     @GetMapping
-    public Result<List<SystemUser>> getAllUser() {
-        List<SystemUser> list = systemUserService.getAllUser();
-        return Result.success(list);
+    public Result<Object> getAllUser(@RequestParam Map<String, Object> params) {
+        // 结果对象
+        PageObjectList pageObjectList = new PageObjectList();
+        // 获取分页参数
+        Integer pageSize = StringUtils.isEmpty((String)params.get("pageSize"))?10:Integer.parseInt((String) params.get("pageSize"));
+        Integer currentPage = StringUtils.isEmpty((String)params.get("currentPage"))?1:Integer.parseInt((String) params.get("currentPage"));
+        Page<SystemUser> page = systemUserService.getPageUser(params, pageSize, currentPage);
+        // 封装结果
+        pageObjectList.setList(page.getContent());
+        Pagination pagination = new Pagination();
+        pagination.setPageSize(pageSize);
+        pagination.setCurrentPage(currentPage);
+        pagination.setTotal(page.getTotalElements());
+        Double totalPage = Double.valueOf(Double.valueOf(String.valueOf(page.getTotalElements()))/pageSize);
+        pagination.setTotalPages((int) Math.ceil(totalPage));
+        pageObjectList.setPagination(pagination);
+
+        return Result.success(pageObjectList);
     }
 
     /**
@@ -129,10 +147,10 @@ public class SystemUserController {
         }
         // 更新用户信息
         SystemUser user = userList.get(0);
-        user.setUserName((String) body.get("userName"));
-        user.setUserDesc((String) body.get("userDesc"));
-        user.setRoleCode((String) body.get("orgCode"));
-        user.setOrgCode((String) body.get("orgCode"));
+        user.setUserName(StringUtils.isEmpty((String) body.get("userName"))?user.getUserName():(String) body.get("userName"));
+        user.setUserDesc(StringUtils.isEmpty((String) body.get("userDesc"))?user.getUserDesc():(String) body.get("userDesc"));
+        user.setRoleCode(StringUtils.isEmpty((String) body.get("roleCode"))?user.getRoleCode():(String) body.get("roleCode"));
+        user.setOrgCode(StringUtils.isEmpty((String) body.get("orgCode"))?user.getOrgCode():(String) body.get("orgCode"));
 
         // 更新
         this.systemUserService.updateUser(user);
