@@ -53,7 +53,10 @@ public enum ResultCode {
     ROLE_NOT_EXIST(5011, "角色信息不存在！"),
 
     // 参数错误
-    PARAMETER_ERROR(5012, "参数错误！");
+    PARAMETER_ERROR(5012, "参数错误！"),
+
+    // 单位信息不全
+    COMPANY_INFO_DEFECT(5013, "单位信息不完整！");
 
     private final Integer code;
 

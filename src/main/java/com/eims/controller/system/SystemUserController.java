@@ -88,7 +88,7 @@ public class SystemUserController {
         user.setUserFlag(1);
         user.setUserDesc((String) body.get("userDesc"));
         // 根据请求token获取当前登陆人
-        String currentToken = httpRequest.getHeader("token");
+        String currentToken = httpRequest.getHeader("Authorization");
         String cruuentUser = TokenUtils.tokenToOut(currentToken);
         user.setCreateUser(cruuentUser);
         user.setCreateDate(new Date());
@@ -195,7 +195,7 @@ public class SystemUserController {
     @GetMapping(value = "/currentUser")
     public Result<Object> getCurrentUser(HttpServletRequest httpRequest, @RequestParam(value = "token", required = false)String token) {
         // Token 信息
-        String userToken = (StringUtils.isEmpty(token)) ? httpRequest.getHeader("token") : token;
+        String userToken = (StringUtils.isEmpty(token)) ? httpRequest.getHeader("Authorization") : token;
         if (StringUtils.isEmpty(userToken)) {
             return Result.failure(ResultCode.TOKEN_NONE);
         }

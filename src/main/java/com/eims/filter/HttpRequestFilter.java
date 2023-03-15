@@ -31,7 +31,8 @@ public class HttpRequestFilter implements Filter {
 
     public List<String> ignoreUrl
             = Arrays.asList(
-                    "/v1/login/front");
+                    "/v1/login/front",
+                    "/v1/test");
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -49,12 +50,13 @@ public class HttpRequestFilter implements Filter {
             filterChain.doFilter(httpRequest, httpResponse);
         } else {
             // 获取请求头Token
-            String requestToken = httpRequest.getHeader("token");
+            String requestToken = httpRequest.getHeader("Authorization");
             // Token为空或者null,返回401
             if (StringUtils.isEmpty(requestToken)) {
                 httpResponse.setStatus(Constant.UNAUTHORIZED);
                 httpResponse.setContentType("application/json; charset=UTF-8");
                 httpResponse.getWriter().write(JSONObject.toJSONString(Result.failure(ResultCode.TOKEN_NONE)));
+                return;
             }
             // 解析Token，判断Token是否过期
             String userCode = TokenUtils.tokenToOut(requestToken);

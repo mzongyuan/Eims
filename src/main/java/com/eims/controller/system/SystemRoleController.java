@@ -73,7 +73,7 @@ public class SystemRoleController {
         role.setRoleDesc((String) body.get("roleDesc"));
         role.setRoleFlag(1);
         // 根据请求token获取当前登陆人
-        String currentToken = httpRequest.getHeader("token");
+        String currentToken = httpRequest.getHeader("Authorization");
         String cruuentUser = TokenUtils.tokenToOut(currentToken);
         role.setCreateUser(cruuentUser);
         role.setCreateDate(new Date());
